@@ -161,7 +161,7 @@ def covertImageToAscii(framePath, cols, rows, scale):
             # get average luminance 
             avg = int(getAverageL(img)) 
   
-            gsval = gscale2[int((avg*9)/255)] 
+            gsval = gscale2gi[-(int((avg*9)/255)+1)] 
   
             # append ascii char to string 
             aimg[j] += gsval 
@@ -176,8 +176,8 @@ def stringToImage(imgText, width, height, imgName):
     
 	img = Image.new("L", (width, height))
 	draw = ImageDraw.Draw(img)
-	font = ImageFont.truetype("cour.ttf", 16)
-	draw.multiline_text((0, 0), str(imgText), fill=(255), font=font, align="left")
+	font = ImageFont.truetype("cour.ttf", 12)
+	draw.multiline_text((0, 0), str(imgText), fill=(255), font=font, spacing=0, align="left")
 	img.save(imgName)
 
 
@@ -260,31 +260,32 @@ frameASCIIlist = []
 
 # set scale default as 0.43 which suits 
 # a Courier font 
-scale = 0.43
+scale = 0.7
 if args.scale: 
     scale = float(args.scale) 
     
 # set cols 
-cols = 200
+cols = 64
 if args.cols: 
     cols = int(args.cols)
     
 # set fps 
-fps = 24
+fps = 12
 if args.fps: 
     fps = int(args.fps) 
 
 # loop through frames in folder
 frameList = os.listdir(frameFolderPath)
+frmListCount = len(frameList)
 
 # get rows
 framePath = frameFolderPath + frameList[0]
 rows = getImageRows(framePath, cols, scale)
 
 # generate list of ASCII text
-for filename in frameList:
+for x in range(1,frmListCount + 1):
     
-    framePath = frameFolderPath + filename
+    framePath = frameFolderPath + "frame" + str(x) + ".jpg"
 
     frameASCIIaimg = covertImageToAscii(framePath, cols, rows, scale)
     
@@ -299,8 +300,8 @@ for filename in frameList:
 
 
 # turn ASCII frames back into image
-width = cols * 10
-height = int(8 / scale) * (rows + 2)
+width = cols * 7
+height = int(7 / scale) * (rows + 2)
 
 # empty out the frames folder
 files = glob.glob(frameAFolderPath + "*")

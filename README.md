@@ -6,11 +6,12 @@ You need the cour.ttf file in same directory as the script to run.
 
 You can use these arguements:
 
---file {filename}
---cols {number of char columns widthwise, default 64}
---fps {output gif frames per sec, default 12}
+* --file {filename}
+* --cols {number of char columns widthwise, default 64}
+* --fps {output gif frames per sec, default 12}
 
-ie: `gif2ascii.py --file "giphy.gif"
+ie:
+`gif2ascii.py --file "giphy.gif"`
 
 increasing the cols exponentially increases the output file size.
 increasing fps increases filesize linearly, but it adds up because output is a gif.

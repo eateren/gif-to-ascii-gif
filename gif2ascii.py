@@ -33,6 +33,17 @@ frameFolderPath = fPath + "\\frames\\"
 frameAFolderPath = fPath + "\\asciiFrames\\"
 
 
+#create data_folders
+try:
+    os.mkdir(frameFolderPath)    
+except:
+    pass
+
+try:
+    os.mkdir(frameAFolderPath)    
+except:
+    pass
+
 
 def avgFPSgif(videoFilePath):
     """
@@ -161,7 +172,7 @@ def covertImageToAscii(framePath, cols, rows, scale):
             # get average luminance 
             avg = int(getAverageL(img)) 
   
-            gsval = gscale2gi[-(int((avg*9)/255)+1)] 
+            gsval = gscale2[-(int((avg*9)/255)+1)] 
   
             # append ascii char to string 
             aimg[j] += gsval 

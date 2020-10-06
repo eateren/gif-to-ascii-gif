@@ -4,7 +4,7 @@ Takes a gif or webm and turns it into an gif rendered with ASCII characters.
 
 You need the cour.ttf file in same directory as the script to run.
 
-You can use these arguements:
+You can use these arguments:
 
 * --file {filename}
 * --cols {number of char columns widthwise, optional, default 64}
